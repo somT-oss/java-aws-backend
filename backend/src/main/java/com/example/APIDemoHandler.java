@@ -1,7 +1,7 @@
 package com.example;
 
-import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
+// import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 
-public class APIDemoHandler implements RequestStreamHandler {
+public class APIDemoHandler {
     
 }
