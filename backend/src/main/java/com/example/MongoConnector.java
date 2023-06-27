@@ -20,7 +20,9 @@ public class MongoConnector {
     final static String MONGO_USERNAME = System.getenv("MONGO_USERNAME");
     final static String MONGO_PASSWORD = System.getenv("MONGO_PASSWORD");
 
-    public static String check() {
+    public MongoDatabase connector() {
+
+        MongoDatabase database = null;
         String connectionString = String.format("mongodb+srv://%s:%s@microservice-cluster.yprquhy.mongodb.net/?retryWrites=true&w=majority", MONGO_USERNAME, MONGO_PASSWORD);
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
@@ -29,24 +31,20 @@ public class MongoConnector {
                 .applyConnectionString(new ConnectionString(connectionString))
                 .serverApi(serverApi)
                 .build();
+        
         // Create a new client and connect to the server
         try (MongoClient mongoClient = MongoClients.create(settings)) {
             try {
+
                 // Send a ping to confirm a successful connection
-                MongoDatabase database = mongoClient.getDatabase("admin");
+                database = mongoClient.getDatabase("users");
                 database.runCommand(new Document("ping", 1));
-                return "Connected";
             } catch (MongoException e) {
                 e.printStackTrace();
-                return "Not connected";
             }
+            return database;
         }
 
     }
-
-    public static void main(String[] args) throws Exception {
-                String check = check();
-                System.out.println(check);
-            }
 }
 
