@@ -7,38 +7,52 @@ import java.sql.Statement;
 public class InsertDataIntoDB {
 
     public static String createNewTable(String tableName) {
-        MYSQLConnector connector = new MYSQLConnector();
-
-        try {
-            Connection newConnection =  connector.connectToDB();
-            Statement statement = newConnection.createStatement();
+        
+        NewDatabaseConnector connector = new NewDatabaseConnector();
+        Connection connection =  connector.newConnector();
+        
+        if (connection != null) {
+          try {
             
-            String insert = String.format("CREATE TABLE %s (id INTEGER, username STRING UNIQUE, email STRING, password STRING)", tableName);
-            System.out.println(insert);
+                Statement statement = connection.createStatement();
+                String insert = String.format("CREATE TABLE %s (id INTEGER, username TEXT, email TEXT, password TEXT)", tableName);
 
-            statement.executeUpdate(insert);
-            return "Created new table";
-        } catch (Exception e) {
-            return "Table already exists";
-        }
+                statement.executeUpdate(insert);
+                return "Created new table";
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }     
+        } 
+        return null;
+        
     }
 
     public static String WTDB(String tableName, String username, String email, String password) {
         
-        MYSQLConnector connector = new MYSQLConnector();
+        NewDatabaseConnector connector = new NewDatabaseConnector();
 
         try {
-            Connection newConnection = connector.connectToDB();
-            String insert = String.format("INSERT INTO %s values(1, '%s', '%s', '%s')", tableName, username, email, password);
+            Connection connection = connector.newConnector();
+            String insert = String.format("INSERT INTO %s (id, username, email, password) VALUES (1, '%s', '%s', '%s')", tableName, username, email, password);
             
             System.out.println(insert);
-            Statement statement = newConnection.createStatement();  
+            Statement statement = connection.createStatement();  
             
             statement.executeUpdate(insert);
             return "Records updated";
         } catch (SQLException e) {
-    
+            e.printStackTrace();
             return "An error occurred";
         }
+    }
+
+    public static void main(String[] args) {
+        // String createNewTable = createNewTable("persons");
+
+        String writeToDb = WTDB("persons", "somto", "somtogmail.com", "testing321");
+
+        // System.out.println(createNewTable);
+        System.out.println(writeToDb);
     }
 }

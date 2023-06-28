@@ -9,29 +9,35 @@ import java.util.Map;
 
 public class GetDataFromDB {
 
-    public static Map<String, Object> getData(int id) {
+    public static Map<String, Object> getData(int id, String tableName) {
+
         MYSQLConnector connector = new MYSQLConnector();
         
         try{
             Connection connection = connector.connectToDB();
             Statement statement = connection.createStatement();
 
-            String query = String.format("SELECT * FROM users WHERE id = %d", id);
+            String query = String.format("SELECT * FROM %s WHERE id = %d",tableName, id);
             ResultSet result = statement.executeQuery(query);
+            
+            Map<String, Object> response = new HashMap<>();
 
             while (result.next()) {
                 int main_id = result.getInt("id");
                 String username = result.getString("username");
                 String email = result.getString("email");
 
-                Map<String, Object> response = new HashMap<>();
+                
                 response.put("id", main_id);
                 response.put("username", username);
                 response.put("email", email);
                 response.put("statusCode", 200);
 
-                return response;
+                
             } 
+
+            return response;
+        
         } catch (SQLException e) {
             e.printStackTrace();
 
@@ -39,10 +45,10 @@ public class GetDataFromDB {
             response.put("statusCode", 400);
             return response;
         }
-        return null;
         
 
 
     }
+    
     
 }
