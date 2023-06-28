@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class MYSQLConnector {
+public class DatabaseConnector {
 
     static String HOST = System.getenv("RDS_HOST");
     static String USERNAME = System.getenv("RDS_USERNAME");
