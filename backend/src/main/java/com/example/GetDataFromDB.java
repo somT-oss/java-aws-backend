@@ -11,7 +11,7 @@ public class GetDataFromDB {
 
     public static Map<String, Object> getData(int id, String tableName) {
 
-        MYSQLConnector connector = new MYSQLConnector();
+        DatabaseConnector connector = new DatabaseConnector();
         
         try{
             Connection connection = connector.connectToDB();

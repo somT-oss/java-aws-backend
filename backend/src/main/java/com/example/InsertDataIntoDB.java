@@ -6,34 +6,12 @@ import java.sql.Statement;
 
 public class InsertDataIntoDB {
 
-    public static String createNewTable(String tableName) {
-        
-        NewDatabaseConnector connector = new NewDatabaseConnector();
-        Connection connection =  connector.newConnector();
-        
-        if (connection != null) {
-          try {
-            
-                Statement statement = connection.createStatement();
-                String insert = String.format("CREATE TABLE %s (id INTEGER, username TEXT, email TEXT, password TEXT)", tableName);
-
-                statement.executeUpdate(insert);
-                return "Created new table";
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }     
-        } 
-        return null;
-        
-    }
-
-    public static String WTDB(String tableName, String username, String email, String password) {
-        
-        NewDatabaseConnector connector = new NewDatabaseConnector();
+    public static String WriteToDatabase(String tableName, String username, String email, String password) {
+    
+        DatabaseConnector connector = new DatabaseConnector();
 
         try {
-            Connection connection = connector.newConnector();
+            Connection connection = connector.connectToDB();
             String insert = String.format("INSERT INTO %s (id, username, email, password) VALUES (1, '%s', '%s', '%s')", tableName, username, email, password);
             
             System.out.println(insert);
@@ -45,14 +23,5 @@ public class InsertDataIntoDB {
             e.printStackTrace();
             return "An error occurred";
         }
-    }
-
-    public static void main(String[] args) {
-        // String createNewTable = createNewTable("persons");
-
-        String writeToDb = WTDB("persons", "somto", "somtogmail.com", "testing321");
-
-        // System.out.println(createNewTable);
-        System.out.println(writeToDb);
     }
 }

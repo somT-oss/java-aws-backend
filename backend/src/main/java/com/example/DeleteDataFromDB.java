@@ -10,7 +10,7 @@ public class DeleteDataFromDB {
 
     public static Map<String, Object> deleteData(int id, String tableName) {
         
-        MYSQLConnector connector = new MYSQLConnector();
+        DatabaseConnector connector = new DatabaseConnector();
 
         try{
             Connection newConnection = connector.connectToDB();
