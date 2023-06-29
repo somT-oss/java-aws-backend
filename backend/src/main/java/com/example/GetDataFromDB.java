@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class GetDataFromDB {
 
-    public static Map<String, Object> getData(int id, String tableName) {
+    public Map<String, Object> getData(int id, String tableName) {
 
         DatabaseConnector connector = new DatabaseConnector();
         

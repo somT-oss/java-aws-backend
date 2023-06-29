@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+backend,com.example,DatabaseConnector,55,0,0,0,12,0,3,0,3,0
+backend,com.example,APIDemoHandler,3,0,0,0,1,0,1,0,1,0
+backend,com.example,DeleteDataFromDB,71,0,0,0,17,0,2,0,2,0
+backend,com.example,InsertDataIntoDB,74,0,0,0,16,0,2,0,2,0
+backend,com.example,GetDataFromDB,90,0,2,0,22,0,3,0,2,0
+backend,com.example,CreateUserHandler,57,0,2,0,13,0,3,0,2,0
+backend,com.example,GetUserHandler,71,0,2,0,15,0,3,0,2,0

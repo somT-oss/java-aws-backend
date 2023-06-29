@@ -3,11 +3,14 @@ package com.example;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InsertDataIntoDB {
 
-    public static String WriteToDatabase(String tableName, String username, String email, String password) {
-    
+    public Map<String, Object> WriteToDatabase(String tableName, String username, String email, String password) {
+        
+        Map<String, Object> response = new HashMap<>();
         DatabaseConnector connector = new DatabaseConnector();
 
         try {
@@ -18,10 +21,20 @@ public class InsertDataIntoDB {
             Statement statement = connection.createStatement();  
             
             statement.executeUpdate(insert);
-            return "Records updated";
+            
+
+            response.put("message", "User information successfully added");
+            response.put("statuCode", 200);
+
+            return response;
+
         } catch (SQLException e) {
             e.printStackTrace();
-            return "An error occurred";
+
+            response.put("message", "An error occurred");
+            response.put("statuCode", 400);
+
+            return response;
         }
     }
 }

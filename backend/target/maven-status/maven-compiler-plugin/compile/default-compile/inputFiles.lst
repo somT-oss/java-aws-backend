@@ -1,6 +1,7 @@
 /home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/InsertDataIntoDB.java
-/home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/Handler.java
+/home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/GetUserHandler.java
+/home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/DatabaseConnector.java
 /home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/DeleteDataFromDB.java
-/home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/MYSQLConnector.java
 /home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/GetDataFromDB.java
 /home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/APIDemoHandler.java
+/home/somto/Dev/java-aws-backend/backend/src/main/java/com/example/CreateUserHandler.java
